@@ -11,12 +11,17 @@ httpRequest.open("GET", "http://api.giphy.com/v1/gifs/trending?api_key=Rpme6fWvS
 httpRequest.send();
 httpRequest.onload = function () {
     var gifsData = JSON.parse(httpRequest.response).data;
+    var html = "";
     gifsData.forEach(gif => {
         var url = gif.images.downsized_medium.url;
         var width = gif.images.downsized_medium.width;
         var height = gif.images.downsized_medium.height;
-                console.log(width + height);
 
+        html += "<div class='column is-one-quarter'>";
+        html += "<img src=" + url +" width=" + width + " height=" + height + ">";
+        html += "</div>"
+
+        document.getElementById("gifs-container").innerHTML = html;
     });
 
 }
