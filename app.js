@@ -75,8 +75,10 @@ function hideDisabledGifs() {
     displayGifs.forEach(function(gif) {
         if(disabledTags.indexOf(gif.category)>= 0) {
             $("#" + gif.id).hide();
+        } else {
+            $("#" + gif.id).show();
         }
-    })
+    });
 }
 
 
@@ -90,7 +92,6 @@ function updateGifsHtml() {
         html += "<div class='column is-one-quarter' id=" + gif.id + ">";
         html += "<img src=" + url +" width=" + width + " height=" + height + ">";
         html += "</div>"
-
-        $("#gifs-container").append(html);
     }); 
+    $("#gifs-container").append(html);
 }
