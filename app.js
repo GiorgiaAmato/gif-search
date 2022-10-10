@@ -1,12 +1,8 @@
-var deleteTag = document.getElementsByClassName('delete')[0];
-deleteTag.addEventListener('click', function(event){
-    event.stopPropagation();
-    console.log("Elimina tag")
-})
-
-
 var searchButtun = $("#serch-gif-bnt");
 var searchInput = $("#search-gif-input");
+var favouriteTags = $(".tag");
+var disabledTags = [];
+var displayGifs =[];
 
 /* Click */
 searchInput.click(function(event) {
@@ -16,6 +12,23 @@ searchInput.click(function(event) {
 searchButtun.click(function(event) {
   console.log("event")
 });
+
+favouriteTags.click(function(){
+    console.log("Hai cliccato un tag");
+    $(this).toggleClass("is-success");
+    $(this).toggleClass("is-danger");
+
+   if($(this).hasClass("is-danger")){
+        disabledTags.push($(this).text().trim().toLowerCase());
+   } else {
+    disabledTags = disabledTags.filter(function (disabledTags) {
+        return disabledTags == $(this).text().trim().toLowerCase();
+    });
+   }
+   hideDisabledGifs();
+   console.log(disabledTags);
+
+})
 
 
 /***************** Chiamata Ajax per API Giphy ******************/
@@ -45,21 +58,39 @@ $.getJSON({
     url: "http://api.giphy.com/v1/gifs/trending?api_key=Rpme6fWvSm44NF5kliQGmfz111RsNCZI",
     success: function (response) {
         var gifsData = response.data;
-        var html = "";
-        gifsData.forEach(gif => {
-            var url = gif.images.downsized_medium.url;
-            var width = gif.images.downsized_medium.width;
-            var height = gif.images.downsized_medium.height;
+        var gifsWithCategory = gifsData.map(function (gif) {
+            var gifWithCategory = gif;
+            gifWithCategory.category = "trending";
 
-        html += "<div class='column is-one-quarter'>";
-        html += "<img src=" + url +" width=" + width + " height=" + height + ">";
-        html += "</div>"
-
-        $("#gifs-container").append(html);
-    });
-
+            return gifWithCategory;
+        })
+        
+        displayGifs = displayGifs.concat(gifsWithCategory);
+        updateGifsHtml();
     }
 })
 
 
+function hideDisabledGifs() {
+    displayGifs.forEach(function(gif) {
+        if(disabledTags.indexOf(gif.category)>= 0) {
+            $("#" + gif.id).hide();
+        }
+    })
+}
 
+
+function updateGifsHtml() {
+    var html = "";
+    displayGifs.forEach(gif => {
+        var url = gif.images.downsized_medium.url;
+        var width = gif.images.downsized_medium.width;
+        var height = gif.images.downsized_medium.height;
+
+        html += "<div class='column is-one-quarter' id=" + gif.id + ">";
+        html += "<img src=" + url +" width=" + width + " height=" + height + ">";
+        html += "</div>"
+
+        $("#gifs-container").append(html);
+    }); 
+}
