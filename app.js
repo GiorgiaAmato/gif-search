@@ -10,7 +10,7 @@ searchInput.click(function(event) {
 });
 
 searchButtun.click(function(event) {
-  console.log("event")
+  console.log(event)
 });
 
 favouriteTags.click(function(){
@@ -100,8 +100,6 @@ $.getJSON({
 
 
 
-/*Search Endpoint*/
-/*"http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=Rpme6fWvSm44NF5kliQGmfz111RsNCZI"*/
 
 
 
