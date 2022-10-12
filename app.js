@@ -1,16 +1,32 @@
-var searchButtun = $("#serch-gif-bnt");
-var searchInput = $("#search-gif-input");
+var searchButton = $(".search-gif-btn");
+var searchInput = $(".input");
 var favouriteTags = $(".tag");
 var disabledTags = [];
 var displayGifs =[];
 
-/* Click */
+
 searchInput.click(function(event) {
-  console.log("event.key")
+
 });
 
-searchButtun.click(function(event) {
-  console.log(event)
+searchButton.click(function(event) {
+    var inputText = searchInput.val();
+    $.getJSON({
+        url: "http://api.giphy.com/v1/gifs/search?q=" + {inputText} + "&api_key=Rpme6fWvSm44NF5kliQGmfz111RsNCZI",
+        success: function (response) {
+            var gifsData = response.data;
+            var gifsWithCategory = gifsData.map(function (gif) {
+                var gifWithCategory = gif;
+                gifWithCategory.category = inputText;
+
+                return gifWithCategory;
+            })
+            
+            displayGifs = displayGifs.concat(gifsWithCategory);
+            updateGifsHtml();
+            console.log(inputText)
+        }
+    });
 });
 
 favouriteTags.click(function(){
@@ -88,14 +104,7 @@ function updateGifsHtml() {
 }
 
 
-$.getJSON({
-    url: "http://api.giphy.com/v1/gifs/search?q=dog&api_key=Rpme6fWvSm44NF5kliQGmfz111RsNCZI",
-    success: function (response) {
-        console.log(response)
-        }
-        
-    
-})
+
 
 
 
