@@ -34,12 +34,12 @@ $(".tag .delete").click(function(event){
     event.stopPropagation();
 
     var category = $(this).parent().text().trim().toLowerCase();
-    console.log(category);
 
     displayGifs = displayGifs.filter(function(gif){
         return gif.category != category;
     });
     updateGifsHtml();
+    $(this).parent().remove();
 });
 
 
@@ -88,12 +88,20 @@ function updateGifsHtml() {
 }
 
 
+$.getJSON({
+    url: "http://api.giphy.com/v1/gifs/search?q=dog&api_key=Rpme6fWvSm44NF5kliQGmfz111RsNCZI",
+    success: function (response) {
+        console.log(response)
+        }
+        
+    
+})
 
 
 
 
-
-
+/*Search Endpoint*/
+/*"http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=Rpme6fWvSm44NF5kliQGmfz111RsNCZI"*/
 
 
 
