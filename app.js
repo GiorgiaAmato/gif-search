@@ -28,30 +28,21 @@ favouriteTags.click(function(){
    hideDisabledGifs();
    console.log(disabledTags);
 
-})
+});
 
+$(".tag .delete").click(function(event){
+    event.stopPropagation();
 
-/***************** Chiamata Ajax per API Giphy ******************/
-/*httpRequest = new XMLHttpRequest();
+    var category = $(this).parent().text().trim().toLowerCase();
+    console.log(category);
 
-httpRequest.open("GET", "http://api.giphy.com/v1/gifs/trending?api_key=Rpme6fWvSm44NF5kliQGmfz111RsNCZI")
-httpRequest.send();
-httpRequest.onload = function () {
-    var gifsData = JSON.parse(httpRequest.response).data;
-    var html = "";
-    gifsData.forEach(gif => {
-        var url = gif.images.downsized_medium.url;
-        var width = gif.images.downsized_medium.width;
-        var height = gif.images.downsized_medium.height;
-
-        html += "<div class='column is-one-quarter'>";
-        html += "<img src=" + url +" width=" + width + " height=" + height + ">";
-        html += "</div>"
-
-        document.getElementById("gifs-container").innerHTML = html;
+    displayGifs = displayGifs.filter(function(gif){
+        return gif.category != category;
     });
+    updateGifsHtml();
+});
 
-}*/
+
 
 /***************** Chiamata Ajax per API Giphy con jQuery ******************/
 $.getJSON({
@@ -93,5 +84,38 @@ function updateGifsHtml() {
         html += "<img src=" + url +" width=" + width + " height=" + height + ">";
         html += "</div>"
     }); 
-    $("#gifs-container").append(html);
+    $("#gifs-container").html(html);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/***************** Chiamata Ajax per API Giphy ******************/
+/*httpRequest = new XMLHttpRequest();
+
+httpRequest.open("GET", "http://api.giphy.com/v1/gifs/trending?api_key=Rpme6fWvSm44NF5kliQGmfz111RsNCZI")
+httpRequest.send();
+httpRequest.onload = function () {
+    var gifsData = JSON.parse(httpRequest.response).data;
+    var html = "";
+    gifsData.forEach(gif => {
+        var url = gif.images.downsized_medium.url;
+        var width = gif.images.downsized_medium.width;
+        var height = gif.images.downsized_medium.height;
+
+        html += "<div class='column is-one-quarter'>";
+        html += "<img src=" + url +" width=" + width + " height=" + height + ">";
+        html += "</div>"
+
+        document.getElementById("gifs-container").innerHTML = html;
+    });
+
+}*/
