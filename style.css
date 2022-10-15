@@ -2,6 +2,13 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+.clearfix ::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+
 .navbar {
     padding: 15px;
     border-radius: 20px;
@@ -17,6 +24,7 @@ body {
     border-radius: 12px;
     border: none;
 }
+
 .section-tags {
     padding: 0;
     overflow: hidden;
