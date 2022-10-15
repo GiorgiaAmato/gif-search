@@ -38,10 +38,10 @@ searchButton.click(function(event) {
 /* L'evento click viene assegnato al body di modo da poter applicare 
 la function anche per i tag che vengono aggiunti tramite la ricerca */
 $('body').on('click', '.tag', function(){
-    $(this).toggleClass("is-success");
-    $(this).toggleClass("is-light");
+    $(this).toggleClass("is-dark");
+    $(this).toggleClass("is-warning");
 
-   if($(this).hasClass("is-light")){
+   if($(this).hasClass("is-warning")){
         disabledTags.push($(this).text().trim().toLowerCase());
    } else {
     disabledTags = disabledTags.filter(function (disabledTags) {
@@ -112,6 +112,8 @@ function updateGifsHtml() {
 
 
 
+/* Questa funzione permette di visualizzare le gifs con tag differenti mescolate, 
+andando a invertive gli index dell'array*/
 function shuffle(array) {
     var currentIndex;
     var swapElement;
