@@ -6,13 +6,17 @@
         <title>GifResearch</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
     </head>
 
-    <body>
-        <nav class="navbar is-fixed-top is-warning" role="navigation" aria-label="main navigation">
+    <body class="">
+        <nav class="navbar is-fixed-top is-primary " role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
-                <a class="navbar-item" href="https://lacerba.io">
-                    <strong> GifResearch </strong>
+                <a class="navbar-item" href="#">
+                    <h1>GifResearch</h1>
                 </a>
 
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
@@ -24,14 +28,14 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="control"><input class= "input" id="input-text" type="search" placeholder="Search" name="omni"></div>
-                    <div class="control"><button class="button is-primary search-gif-btn" id="search-gif-btn" type="submit">Search</button></div>
+                    <div class="control"><button class="button is-info search-gif-btn" id="search-gif-btn" type="submit">Search</button></div>
                 </div>
             </div>
         </nav>
         <section class="section">
             <div class="container">
                 <div class="tags">
-                    <span class="tag is-success is-large favorite-category">
+                    <span class="tag is-info is-large favorite-category">
                         Trending
                         <button class="delete is-small"></button>
                     </span>
