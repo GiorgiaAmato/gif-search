@@ -1,6 +1,5 @@
 var searchButton = $("#search-gif-btn");
 var searchInput = $("#input-text");
-var favouriteTags = $(".tag");
 var disabledTags = [];
 var displayGifs =[];
 
@@ -37,8 +36,9 @@ searchButton.click(function(event) {
     });
 });
 
-favouriteTags.click(function(){
-    console.log("Hai cliccato un tag");
+/* L'evento click viene assegnato al body di modo da poter applicare 
+la function anche per i tag che vengono aggiunti tramite la ricerca */
+$('body').on('click', '.tag', function(){
     $(this).toggleClass("is-success");
     $(this).toggleClass("is-danger");
 
@@ -55,7 +55,7 @@ favouriteTags.click(function(){
 });
 
 /* L'evento click viene assegnato al body di modo da poter applicare 
-la function anche per i teg che vengono aggiunti tramite la ricerca */
+la function anche per i tag che vengono aggiunti tramite la ricerca */
 $('body').on('click', '.tag .delete', function(event){
     event.stopPropagation();
 
