@@ -23,11 +23,10 @@ searchButton.click(function(event) {
             
             displayGifs = displayGifs.concat(gifsWithCategory);
             updateGifsHtml();
-            console.log(inputText);
             searchInput.val("");
 
             var html = "";
-            html += '<span class="tag is-success is-large favorite-category">';
+            html += '<span class="tag is-info is-large favorite-category">';
             html += inputText.charAt(0).toUpperCase() + inputText.slice(1);
             html += '<button class="delete is-small"></button> </span>';
 
@@ -40,9 +39,9 @@ searchButton.click(function(event) {
 la function anche per i tag che vengono aggiunti tramite la ricerca */
 $('body').on('click', '.tag', function(){
     $(this).toggleClass("is-success");
-    $(this).toggleClass("is-danger");
+    $(this).toggleClass("is-light");
 
-   if($(this).hasClass("is-danger")){
+   if($(this).hasClass("is-light")){
         disabledTags.push($(this).text().trim().toLowerCase());
    } else {
     disabledTags = disabledTags.filter(function (disabledTags) {
@@ -50,8 +49,6 @@ $('body').on('click', '.tag', function(){
     });
    }
    hideDisabledGifs();
-   console.log(disabledTags);
-
 });
 
 /* L'evento click viene assegnato al body di modo da poter applicare 
@@ -101,7 +98,7 @@ function hideDisabledGifs() {
 
 function updateGifsHtml() {
     var html = "";
-    displayGifs.forEach(gif => {
+    shuffle(displayGifs).forEach(gif => {
         var url = gif.images.downsized_medium.url;
         var width = gif.images.downsized_medium.width;
         var height = gif.images.downsized_medium.height;
@@ -115,7 +112,20 @@ function updateGifsHtml() {
 
 
 
+function shuffle(array) {
+    var currentIndex;
+    var swapElement;
+    var randomIndex;
 
+    for (currentIndex = 0; currentIndex < array.length; currentIndex++) {
+        randomIndex = Math.floor(Math.random() * array.length);
+        swapElement = array[currentIndex];
+        array[currentIndex] = array [randomIndex];
+        array[randomIndex] = swapElement;
+    }
+
+    return array;
+}
 
 
 
