@@ -17,9 +17,15 @@ body {
     border-radius: 12px;
     border: none;
 }
+.section-tags {
+    padding: 0;
+    overflow: hidden;
+    margin: 25px 50px;
+}
 
 .tags {
     margin-top: 25px;
+    height: 150px;
 }
 
 .tags .tag {
