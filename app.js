@@ -1,5 +1,5 @@
-var searchButton = $(".search-gif-btn");
-var searchInput = $(".input");
+var searchButton = $("#search-gif-btn");
+var searchInput = $("#input-text");
 var favouriteTags = $(".tag");
 var disabledTags = [];
 var displayGifs =[];
@@ -12,7 +12,7 @@ searchInput.click(function(event) {
 searchButton.click(function(event) {
     var inputText = searchInput.val();
     $.getJSON({
-        url: "http://api.giphy.com/v1/gifs/search?q=" + {inputText} + "&api_key=Rpme6fWvSm44NF5kliQGmfz111RsNCZI",
+        url: "http://api.giphy.com/v1/gifs/search?q=" + inputText + "&api_key=Rpme6fWvSm44NF5kliQGmfz111RsNCZI",
         success: function (response) {
             var gifsData = response.data;
             var gifsWithCategory = gifsData.map(function (gif) {
@@ -24,7 +24,15 @@ searchButton.click(function(event) {
             
             displayGifs = displayGifs.concat(gifsWithCategory);
             updateGifsHtml();
-            console.log(inputText)
+            console.log(inputText);
+            searchInput.val("");
+
+            var html = "";
+            html += '<span class="tag is-success is-large favorite-category">';
+            html += inputText.charAt(0).toUpperCase() + inputText.slice(1);
+            html += '<button class="delete is-small"></button> </span>';
+
+            $(".tags").append(html)
         }
     });
 });
@@ -46,7 +54,9 @@ favouriteTags.click(function(){
 
 });
 
-$(".tag .delete").click(function(event){
+/* L'evento click viene assegnato al body di modo da poter applicare 
+la function anche per i teg che vengono aggiunti tramite la ricerca */
+$('body').on('click', '.tag .delete', function(event){
     event.stopPropagation();
 
     var category = $(this).parent().text().trim().toLowerCase();
