@@ -2,13 +2,6 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-.clearfix ::after {
-        content: "";
-        clear: both;
-        display: table;
-    }
-
-
 .navbar {
     padding: 15px;
     border-radius: 20px;
@@ -28,7 +21,13 @@ body {
 .section-tags {
     padding: 0;
     overflow: hidden;
-    margin: 25px 50px;
+    margin: 25px 25px;
+}
+
+.section-gifs {
+    padding: 0;
+    overflow: hidden;
+    margin: 25px 25px;
 }
 
 .tags {
@@ -55,7 +54,7 @@ h1 {
 }
 
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1090px) {
     .navbar {
         display: flex;
         flex-direction: column;
@@ -66,4 +65,5 @@ h1 {
         display: flex;
         justify-content: center;
     }
+
 }
