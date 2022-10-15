@@ -1,0 +1,38 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+    padding: 15px;
+    border-radius: 20px;
+    margin: 15px;
+}
+
+.button {
+    border-radius: 12px;
+    margin-left: 10px;
+}
+
+.input {
+    border-radius: 12px;
+    border: none;
+}
+
+.tags {
+    margin-top: 25px;
+    clear: ;
+}
+
+.tags .tag {
+    border-radius: 12px;
+}
+
+img {
+    border-radius: 12px;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 25px;
+    letter-spacing: 2px;
+}
